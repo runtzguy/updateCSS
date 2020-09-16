@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+        font-size: 22px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        display: flex;
+        justify-content: center;
+        background-color:cornflowerblue;
+        width: 1140px;
+        height: 800px;
+        color: white;
+
+    }
+    .wrapper{
+        margin-top: 40px;
+    }
+    h1 span {
+        color:#ffc600;
+    }
+    #picture{
+        margin-top: 50px;
+    }
+    img{
+        background-color:#ffc600;
+        width: 900px;
+        height: 500px;
+        padding: 50px;
+        filter: blur(0px);
+    }
+
+</style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Update CSS Variables with <span>JS</span></h1>
+        <div class="slidecontainer">
+            <label>Spacing: </label>
+            <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+        </div>
+        <div class="slidecontainer">
+            <label>Blur: </label>
+            <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+        </div>
+        <div id="base-color">
+            <label>Base Color: </label>
+            <input type="color" name="base" value="#ffc600">
+        </div>
+
+        <div id="picture">
+            <img src="/miniJSprojects/day3/img/img_day3.jpg" alt="Serenity">
+        </div>
+    </div>    
+    <script>
+        let childrenElements= document.getElementById('base-color').children;
+        let bcElement = childrenElements[1];;
+        let baseColor;
+        let ele = document.getElementById('picture');
+        let imgElement = ele.children[0];
+        let h1Element = document.getElementsByTagName('h1');
+        let spanJS = h1Element[0].children[0];
+
+        let spaceSliderE = document.getElementsByClassName('slidecontainer');
+        spaceSliderE = (spaceSliderE[0].children[1]);
+        let blurSliderE = document.getElementsByClassName('slidecontainer');
+        blurSliderE = blurSliderE[1].children[1];
+
+        bcElement.addEventListener('input', changeColor);
+        spaceSliderE.addEventListener('input', changeSpacing);
+        blurSliderE.addEventListener('input', changeBlur);
+
+        function changeSpacing(e){
+            let sValue = (e.target.value/100) * 200;
+            imgElement.style.padding = `${sValue}px`;
+        }
+        function changeBlur(e){
+            let bValue = (e.target.value/100) * 40;
+            imgElement.style.filter = `blur(${bValue}px)`;
+        }
+        function changeColor(e){
+            imgElement.style.backgroundColor = e.target.value;
+            spanJS.style.color = e.target.value;
+            
+        }
+    
+    
+    </script>       
+
+</body>
+</html>
